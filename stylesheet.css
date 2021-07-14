@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    background-color: #353a40;
+    width: 100%;
+}
+
+.nav img {
+    align-self: center;
+    margin: 0 1em;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #ffffff
+}
+.nav h3 {
+    font-weight: 300;
+}
+
+.superhero {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+}
+
+.superhero img {
+    width: 550px;
+    height: auto;
+}
+.superhero h1 {
+    margin: 0;
+}
+.superhero input {
+    height: 20px;
+    border-radius: 1px;
+    border: 1px solid #808080;
+    transition: outline 0.2s;
+}
+
+.superhero input:focus {
+    outline: 3px solid #68a4fd;
+}
+
+.superhero button {
+    width: 75px;
+    height: 30px;
+    margin: 0.5em 0;
+    display: block;
+    background-color: #0d6efd;
+    color: #ffffff;
+    border: 0;
+    transition: background-color 0.3s, outline 0.5s ;
+    cursor: pointer;
+}
+
+.superhero button:hover {
+    background-color: #0248b1;
+}
+
+.superhero button:focus {
+    outline: 3px solid #68a4fd;
+}
