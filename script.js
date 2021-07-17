@@ -5,19 +5,19 @@ const heroSubmit = $("#submit");
 const heroInfo = $("#hero-data");
 const heroError = $("#heroError");
 
-/* Encontrar porque la condicional no funciona */
-
 heroSubmit.click(function (event) {
   event.preventDefault();
-  if (heroInput.val() > 731) {
-    heroError.html("El ID está fuera de rango");
-  } else if (heroInput.val() == 0) {
-    heroError.html("Ingrese un ID válido");
-  } else {
-    console.log(heroInput.val());
-    heroInput.submit();
-    fetchHeroData();
-  }
+  /*  "verificación de input alternativa"
+    if (heroInput.val() > 731) {
+      heroError.html("El ID está fuera de rango");
+    } else if (heroInput.val() == 0) {
+      heroError.html("Ingrese un ID válido");
+    } else {
+    }
+  */
+  console.log(heroInput.val());
+  heroInput.submit();
+  fetchHeroData();
 });
 
 function fetchHeroData() {
@@ -28,8 +28,15 @@ function fetchHeroData() {
       `https://www.superheroapi.com/api.php/1104494366627102/` +
       $("#input").val(),
     success: function (data) {
-      heroPrint(data);
-    },
+      if (data.response === "success"){
+        heroPrint(data)
+        console.log("SUCCESS")
+    } else {
+      heroError.html("Ingrese un ID válido");
+      console.log("ERROR")
+    }
+  },
+  // error:
   });
 }
 
@@ -56,4 +63,5 @@ function heroPrint(data) {
   heroHeight.html(`Altura: ${data.appearance.height.join(" - ")}`);
   heroWeight.html(`Peso: ${data.appearance.weight.join(" - ")}`);
   heroAliases.html(`Alianzas: ${data.biography.aliases.join(", ")}`);
-}
+  }
+ 
