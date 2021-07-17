@@ -28,22 +28,22 @@ function fetchHeroData() {
       `https://www.superheroapi.com/api.php/1104494366627102/` +
       $("#input").val(),
     success: function (data) {
-      if (data.response === "success"){
-        heroPrint(data)
-        renderSuperheroChart(data)
-        console.log("SUCCESS")
-    } else {
-      heroError.html("Ingrese un ID válido");
-      console.log("ERROR")
-    }
-  },
-  // error:
+      if (data.response === "success") {
+        heroPrint(data);
+        renderSuperheroChart(data);
+        console.log("SUCCESS");
+      } else {
+        heroError.html("Ingrese un ID válido");
+        console.log("ERROR");
+      }
+    },
+    // error:
   });
 }
 
 function heroPrint(data) {
   let heroImage = $("#heroImage");
-  const heroMsg = $("#heroFoundMsg")
+  const heroMsg = $("#heroFoundMsg");
   let heroName = $("#heroName");
   let heroGroupAffiliation = $("#group_affiliation");
   let heroPublisher = $("#publisher");
@@ -53,7 +53,7 @@ function heroPrint(data) {
   let heroWeight = $("#weight");
   let heroAliases = $("#aliases");
   heroImage.attr("src", data.image.url);
-  heroMsg.html(`SuperHero Encontrado`)
+  heroMsg.html(`SuperHero Encontrado`);
   heroName.html(`Nombre: ${data.name}`);
   heroGroupAffiliation.html(
     `Conexiones: ${data.connections["group-affiliation"]}`
@@ -67,42 +67,42 @@ function heroPrint(data) {
   heroWeight.html(`Peso: ${data.appearance.weight.join(" - ")}`);
   heroAliases.html(`Alianzas: ${data.biography.aliases.join(", ")}`);
 }
-  function renderSuperheroChart(data) {
-    const options = {
-      title: {
-        text: `Estadísitcas de poder para ${data.name}`,
+function renderSuperheroChart(data) {
+  const options = {
+    title: {
+      text: `Estadísitcas de poder para ${data.name}`,
+    },
+    data: [
+      {
+        type: "pie",
+        dataPoints: [
+          {
+            label: "Inteligencia",
+            y: Number.parseInt(data.powerstats.intelligence),
+          },
+          {
+            label: "Fuerza",
+            y: Number.parseInt(data.powerstats.strength),
+          },
+          {
+            label: "Velocidad",
+            y: Number.parseInt(data.powerstats.speed),
+          },
+          {
+            label: "Durabilidad",
+            y: Number.parseInt(data.powerstats.durability),
+          },
+          {
+            label: "Poder",
+            y: Number.parseInt(data.powerstats.power),
+          },
+          {
+            label: "Combate",
+            y: Number.parseInt(data.powerstats.combat),
+          },
+        ],
       },
-      data: [
-        {
-          type: "pie",
-          dataPoints: [
-            {
-              label: "Inteligencia",
-              y: Number.parseInt(data.powerstats.intelligence),
-            },
-            {
-              label: "Fuerza",
-              y: Number.parseInt(data.powerstats.strength),
-            },
-            {
-              label: "Velocidad",
-              y: Number.parseInt(data.powerstats.speed),
-            },
-            {
-              label: "Durabilidad",
-              y: Number.parseInt(data.powerstats.durability),
-            },
-            {
-              label: "Poder",
-              y: Number.parseInt(data.powerstats.power),
-            },
-            {
-              label: "Combate",
-              y: Number.parseInt(data.powerstats.combat),
-            },
-          ],
-        },
-      ],
-    };
-    $("#chartContainer").CanvasJSChart(options);
-  }
+    ],
+  };
+  $("#chartContainer").CanvasJSChart(options);
+}
